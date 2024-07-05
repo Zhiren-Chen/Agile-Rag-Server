@@ -1,4 +1,4 @@
-## Agile Rag Server可以利用显存只够容纳一个LLM的CUDA显卡，为客户端提供LLM、向量化和重排等三个服务。
+## Agile Rag Server可以利用显存只够容纳一个LLM的CUDA显卡，运行LLM、向量化和重排等三个服务。
 ### 已成功在Langchain-Chatchat、FastGPT、Vanna等RAG应用上验证可行性，并在**单张RTX4060 Laptop (8GB)** 及32GB cpu内存的硬件配置下，实现了**20秒内**完成Qwen1.5-7B-Chat-GPTQ-Int4（需8GB显存）推理 -> bge-m3（需3GB内存）检索向量 -> bge-reranker-v2-m3（需3GB显存）重排**100段**最长768字的文本 -> Qwen1.5-7B-Chat-GPTQ-Int4再次推理回答的完整RAG流程，使得**中低端显卡也可以兼顾大模型推理和大规模重排**。
 ### 最佳适用场景：带有单张6G-12G显卡的个人电脑，且最好拥有24G以上的cpu内存。
 #### 工作原理：按照各模型的使用情况，把它们在cuda和cpu之间调遣（一般耗时约1秒），把显存安排给大任务，使用cpu内存等待或执行小任务（如少量的向量化）。
