@@ -1,0 +1,90 @@
+{   
+    "reset_flags": 2,
+
+    "standby_llms": ["qwen7bgptq"],
+    "standby_embedders": ["bge-m3","m3e-base"],
+    "standby_rerankers": ["bge_v2m3","bce"],
+    "llms":{ 
+        "qwen14b": {
+            "llm_path": "/home/czr/codes/models/qwen14b/qwen/Qwen1___5-14B-Chat-AWQ",
+            "tokenizer_path": "/home/czr/codes/models/qwen14b/qwen/Qwen1___5-14B-Chat-AWQ",
+            "device":"cuda",
+            "max_tokens": 1024,
+            "size_est": 12000,
+            "cuda_thres": 0
+        },
+        "qwen7b": {
+            "llm_path": "/home/czr/codes/models/qwen7b/qwen/Qwen2-7B-Instruct-AWQ",
+            "tokenizer_path": "/home/czr/codes/models/qwen7b/qwen/Qwen2-7B-Instruct-AWQ",
+            "device":"flex",
+            "max_tokens": 2048,
+            "size_est": 5800,
+            "cuda_thres": 0,
+            "idle_on_cpu": false
+        },
+        "qwen7bgptq": {
+            "llm_path": "/home/czr/codes/models/models/qwen/Qwen1___5-7B-Chat-GPTQ-Int4",
+            "tokenizer_path": "/home/czr/codes/models/models/qwen/Qwen1___5-7B-Chat-GPTQ-Int4",
+            "device":"flex",
+            "max_tokens": 2048,
+            "size_est": 6500,
+            "cuda_thres": 0,
+            "idle_on_cpu": false
+        },
+        "qwen4b": {
+            "llm_path": "/home/czr/codes/models/qwen4b/qwen/Qwen1___5-4B-Chat-AWQ",
+            "tokenizer_path": "/home/czr/codes/models/qwen4b/qwen/Qwen1___5-4B-Chat-AWQ", 
+            "device":"flex",
+            "max_tokens": 2048,
+            "size_est": 4900,
+            "cuda_thres": 0,
+            "idle_on_cpu": false
+        }
+    },
+    "llm_params":{
+        "default_temp": 0.5,
+        "force_0_temp": false
+    },
+    "embedders":{
+        "bge-m3":{
+            "path": "/home/czr/codes/models/bge-m3",
+            "device": "flex",
+            "size_est": 2900,
+            "cuda_thres": 20,
+            "idle_on_cpu": false
+        },
+        "m3e-base": {
+            "path": "/home/czr/codes/models/m3e-base",
+            "device": "flex",
+            "size_est": 500,
+            "cuda_thres": 100,
+            "idle_on_cpu": false
+        }
+    },
+    "embedder_params":{
+        "token_estimation": "len",
+        "resize": 0
+    },
+    "rerankers":{
+        "bce":{
+            "path":"/home/czr/codes/models/bce-reranker-base_v1",
+            "max_tokens": 512,
+            "device": "flex",
+            "cuda_thres": 10,
+            "idle_on_cpu": true
+        },
+        "bge_v2m3":{
+            "path":"/home/czr/codes/models/bge_reranker/AI-ModelScope/bge-reranker-v2-m3",
+            "max_tokens": 768,
+            "device": "flex",
+            "cuda_thres": 8,
+            "idle_on_cpu": true,
+            "size_est": 2800
+        }
+    },
+    "reranker_params":{
+        "top_n": 9999,
+        "sentence_transformer_num_workers": 0,
+        "batch_size": 32
+    }
+}
